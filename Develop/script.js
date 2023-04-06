@@ -11,13 +11,17 @@ $(function () {
 
 // Defined hourlyColor function to change the color of each time block based on whether it's in the "past, present, or future" relative to the current hour dynamically.
   function hourlyColor() {
+    // console.log("Hourly called");
     $('.time-block').each(function() {
-      const blockHour = parseInt(this.id);
+      const blockHour = parseInt(this.id.substring(5));
+      // console.log(blockHour);
       $(this).toggleClass('past', blockHour < currentHour);
       $(this).toggleClass('present', blockHour === currentHour);
       $(this).toggleClass('future', blockHour > currentHour);
     });
   }
+
+  hourlyColor();
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -37,3 +41,5 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+
