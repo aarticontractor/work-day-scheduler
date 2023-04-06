@@ -7,6 +7,9 @@ body {
   text-align: center;
 }
 
+.date-style {
+  border-bottom: 15px solid #0c6477;
+}
 
 textarea {
   background: transparent;
