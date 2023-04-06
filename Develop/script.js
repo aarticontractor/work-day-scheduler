@@ -40,6 +40,27 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+
+  function setTime() {
+    // Get the current day of the week in human readable format (Monday-Sunday)
+    const currentDayOfWeek = dayjs().format('dddd');
+
+    // Get the current month in human readable format (January-December)
+    const currentMonth = dayjs().format('MMMM');
+
+    // Get the current date (1-31)
+    const currentDate = dayjs().format('DD');
+
+    const dayElement = $('#day');
+    const monthElement = $('#month');
+    const dateElement = $('#date')
+
+    dayElement.text(currentDayOfWeek);
+    monthElement.text(currentMonth);
+    dateElement.text(currentDate);
+    
+  }
+
+  setTime();
+
 });
-
-
