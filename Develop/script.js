@@ -1,7 +1,23 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+const localeSettings = {};
+dayjs.locale(localeSettings);
+// Wait until the DOM is fully loaded before executing the code inside the function.
 $(function () {
+
+// Declared variable currentHour to get the current hour of the day using the dayjs library.
+  const currentHour = dayjs().format('H');
+
+// Defined hourlyColor function to change the color of each time block based on whether it's in the "past, present, or future" relative to the current hour dynamically.
+  function hourlyColor() {
+    $('.time-block').each(function() {
+      const blockHour = parseInt(this.id);
+      $(this).toggleClass('past', blockHour < currentHour);
+      $(this).toggleClass('present', blockHour === currentHour);
+      $(this).toggleClass('future', blockHour > currentHour);
+    });
+  }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
