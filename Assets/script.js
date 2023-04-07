@@ -8,7 +8,7 @@ dayjs.locale(localeSettings);
 $(function() {
   // Declared variable currentHour to get the current hour of the day using the dayjs library.
   const currentHour = dayjs().format('H');
-
+  console.log(currentHour);
   // Defined hourlyColor function to change the color of each time block based on whether it's in the "past, present, or future" relative to the current hour dynamically.
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -16,12 +16,12 @@ $(function() {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   function hourlyColor() {
-    // console.log("Hourly called");
+    console.log("Hourly called");
     $('.time-block').each(function() {
       const blockHour = parseInt(this.id.substring(5));
-      // console.log(blockHour);
+      console.log(blockHour);
       $(this).toggleClass('past', blockHour < currentHour);
-      $(this).toggleClass('present', blockHour === currentHour);
+      $(this).toggleClass('present', blockHour == currentHour);
       $(this).toggleClass('future', blockHour > currentHour);
     });
   }

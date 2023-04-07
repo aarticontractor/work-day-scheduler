@@ -1,101 +1,148 @@
-# 05 Third-Party APIs: Work Day Scheduler
+# Third-Party APIs: Work Day Scheduler
 
 
-## Your Task
+## Description
 
-Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+[Visit the Deployed Site](https://aarticontractor.github.io/work-day-scheduler/)
+<br>
+The Work Day Planner creates efficency and ease among your busy schedule. You can document all upcoming events for the day in your planer, It's easy to keep track with the color boxes; grey indicates the past, red indicaates the current time, and green indicates the promising future, making it visually easy for varying consumers to keep track of the their time and events.
+<br>
+<br>
+<br>
+<br>
 
-You'll need to use the [Day.js](https://day.js.org/en/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Day.js in the browser.
+## Technology Used 
 
-## User Story
+| Technology Used         | Resource URL           | 
+| ------------- |:-------------:| 
+| HTML    | [https://developer.mozilla.org/en-US/docs/Web/HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | 
+| CSS     | [https://developer.mozilla.org/en-US/docs/Web/CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)      |   
+| Git | [https://git-scm.com/](https://git-scm.com/)     |  
+| JavaScript | [https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) |  
+| Web API | [https://developer.mozilla.org/en-US/docs/Web/API](https://developer.mozilla.org/en-US/docs/Web/API)  |
+|DayJs| [https://day.js.org/](https://day.js.org/) |
 
-```md
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively
+<br>
+
+
+
+## Table of Contents
+
+* [Application Highlights and Usage](#application-highlights-and-usage)
+* [Code Snippets](#code-snippets)
+* [Learning Points](#learning-points)
+* [Author Info](#author-info)
+* [Credits](#credits)
+
+<br>
+
+
+## Application Highlights and Usage
+<br>
+
+The following animation demonstrates the application functionality where when the user clicks the save button for that timeblock then the text for that event is saved in local storage and upon refreshing the saved events persists:
+
+
+<br>
+<br>
+
+![alt text](Assets/local-storage.gif)
+
+<br>
+<br>
+<br>
+
+## Code Snippets
+
+<br>
+
+The following code snippet shows how each timeblock is color coded to indicate whether it is in the past, present, or future depending on the current hour
+
+```javascript
+
+function hourlyColor() {
+    
+$('.time-block').each(function() {
+const blockHour = parseInt(this.id.substring(5));
+      
+      $(this).toggleClass('past', blockHour < currentHour);
+      $(this).toggleClass('present', blockHour == currentHour);
+      $(this).toggleClass('future', blockHour > currentHour);
+    });
+  }
+
+  hourlyColor();
 ```
 
-## Acceptance Criteria
+<br>
+<br>
+<br>
 
-```md
-GIVEN I am using a daily planner to create a schedule
-WHEN I open the planner
-THEN the current day is displayed at the top of the calendar
-WHEN I scroll down
-THEN I am presented with timeblocks for standard business hours
-WHEN I view the timeblocks for that day
-THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-WHEN I click into a timeblock
-THEN I can enter an event
-WHEN I click the save button for that timeblock
-THEN the text for that event is saved in local storage
-WHEN I refresh the page
-THEN the saved events persist
+The below snippet shows the function where the user inputs are stored in the local storage after clicking on the save button:
+
+```javascript
+
+function saveTasks() {
+    $('.saveBtn').on('click', function() {
+      const idName = $(this).parent().attr('id');
+      const textAreaValue = $(this).siblings('.description').val();
+      localStorage.setItem(idName, textAreaValue);
+    });
+  }
+  saveTasks();
+
+
+function loadTasks() {
+    $('.saveBtn').each(function() {
+      const idName = $(this).parent().attr('id');
+      const textAreaValue = localStorage.getItem(idName)
+      $(this).siblings('.description').text(textAreaValue);
+    });
+  }
+  loadTasks();
 ```
 
-The following animation demonstrates the application functionality:
+<br>
+<br>
+<br>
+
+## Learning Points 
+
+   I learned the following skills while doing this project:
+<br>
+- Java script basics (functions, arrays, for-loops, if-else, alerts, prompts, confirm, etc)
+- How to use the DAYJS library for date and time 
+- When to use the 'this' variable
+- How to use $ attribute instead of .addeventListener using JQUERY to capture data from an HTML element
+- How to store values in the local storage of the web browser
+- JQUERY UI, widgets and interactions with the HTML
 
 
-<!-- @TODO: create ticket to review/update image) -->
-![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/05-third-party-apis-homework-demo.gif)
+<br>
 
-## Grading Requirements
+## Author Info
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+### Aarti Contractor
 
-This Challenge is graded based on the following criteria:
 
-### Technical Acceptance Criteria: 40%
+- Portfolio: https://aarticontractor.github.io/aarticontractor_portfolio/
+- Linkedin: https://www.linkedin.com/in/aarti-contractor/
+- Github: https://github.com/aarticontractor
 
-* Satisfies all of the above acceptance criteria plus the following:
+<br>
 
-  * Uses a date utility library to work with date and time
+## Credits
 
-### Deployment: 32%
+- https://jqueryui.com/
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript
+- https://beautifier.io/
+- https://onecompiler.com/javascript/3z45t4b2m
+- https://cloudconvert.com/webm-to-gif
+- https://developer.mozilla.org/en-US/docs/Web/API
+- https://day.js.org/
 
-* Application deployed at live URL
 
-* Application loads with no errors
+<br>
 
-* Application GitHub URL submitted
+© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
 
-* GitHub repo contains application code
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate
-
-* Application user interface style is clean and polished
-
-* Application resembles the mock-up functionality provided in the Challenge instructions
-
-### Repository Quality: 13%
-
-* Repository has a unique name
-
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository, with a unique name and a README describing the project
-
-- - -
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
