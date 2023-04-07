@@ -11,6 +11,10 @@ body {
   border-bottom: 15px solid #0c6477;
 }
 
+.header {
+  background-color: #8f4318;
+}
+
 textarea {
   background: transparent;
   border: none;
@@ -67,5 +71,5 @@ textarea {
 }
 
 .date-style {
-  font-size: 20px;
+  font-size: 25px;
 }
